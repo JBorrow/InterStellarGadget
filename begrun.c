@@ -163,6 +163,11 @@ void set_units(void)
   All.UnitCoolingRate_in_cgs = All.UnitPressure_in_cgs / All.UnitTime_in_s;
   All.UnitEnergy_in_cgs = All.UnitMass_in_g * pow(All.UnitLength_in_cm, 2) / pow(All.UnitTime_in_s, 2);
 
+#ifdef FIXED_POTENTIAL
+  /* We need to convert our input mass to a density */
+  All.rho0_nfw = All.HaloMass/(4*3.14159*pow(All.R_nfw, 3)*(log(1+All.c_nfw) - All.c_nfw/(1 + All.c_nfw)))
+#endif
+
   /* convert some physical input parameters to internal units */
 
   All.Hubble = HUBBLE * All.UnitTime_in_s;
