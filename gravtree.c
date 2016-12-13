@@ -362,6 +362,29 @@ void gravity_tree(void)
 
 #endif
 
+#ifdef FIXED_POTENTIAL
+  double r, r2, m_in_r;
+  // To prevent re-calculation for each particle
+  double prefactor = 4*3.14159*All.rho0_nfw*All.r_nfw*All.r_nfw*All.r_nfw*All.G;
+
+  for (i=0; i<NumPart; i++) {
+	if (P[i].Ti_endstep == All.Ti_Current) {
+	  r2 = 0;
+	  for (j=0; j<3; j++) {
+		r2 += P[i].Pos[j]*P[i].Pos[j];
+	  }
+	  
+	  r = sqrt(r2);
+	  // The following is *not* m_in_r, but also includes extra factors (G/r2).
+	  m_in_r = prefactor*(log(1 + (r/All.R_nfw)) - r/(r + All.R_nfw))/r2;
+
+	  for (j=0; j<3; j++) {  // We need to add so self-gravity
+		P[i].GravAccel[j] -= (m_in_r)*(P[i].Pos[j]/r);
+	  }
+	}
+  }
+#endif
+
 
 
 
