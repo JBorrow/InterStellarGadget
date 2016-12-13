@@ -165,7 +165,7 @@ void set_units(void)
 
 #ifdef FIXED_POTENTIAL
   /* We need to convert our input mass to a density */
-  All.rho0_nfw = All.HaloMass/(4*3.14159*pow(All.R_nfw, 3)*(log(1+All.c_nfw) - All.c_nfw/(1 + All.c_nfw)))
+  All.rho0_nfw = All.HaloMass/(4*3.14159*pow(All.R_nfw, 3)*(log(1+All.c_nfw) - All.c_nfw/(1 + All.c_nfw)));
 #endif
 
   /* convert some physical input parameters to internal units */

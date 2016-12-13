@@ -365,7 +365,7 @@ void gravity_tree(void)
 #ifdef FIXED_POTENTIAL
   double r, r2, m_in_r;
   // To prevent re-calculation for each particle
-  double prefactor = 4*3.14159*All.rho0_nfw*All.r_nfw*All.r_nfw*All.r_nfw*All.G;
+  double prefactor = 4*3.14159*All.rho0_nfw*All.R_nfw*All.R_nfw*All.R_nfw*All.G;
 
   for (i=0; i<NumPart; i++) {
 	if (P[i].Ti_endstep == All.Ti_Current) {
