@@ -48,7 +48,7 @@ OPT   +=  -DHAVE_HDF5
 
 
 #--------------------------------------- Things for special behaviour
-#OPT   +=  -DFIXED_POTENTIAL
+OPT   +=  -DFIXED_POTENTIAL
 #OPT   +=  -DNOGRAVITY     
 #OPT   +=  -DNOTREERND 
 #OPT   +=  -DNOTYPEPREFIX_FFTW        
@@ -87,7 +87,8 @@ MPICHLIB =  -lmpich
 
 #--------------------------------------- Select target computer
 
-SYSTYPE="MPA"
+SYSTYPE="josh"
+#SYSTYPE="MPA"
 #SYSTYPE="Mako"
 #SYSTYPE="Regatta"
 #SYSTYPE="RZG_LinuxCluster"
@@ -98,6 +99,18 @@ SYSTYPE="MPA"
 
 
 #--------------------------------------- Adjust settings for target computer
+
+ifeq ($(SYSTYPE),"josh")
+CC       =  mpicc   
+OPTIMIZE =  -O3 -Wall -DH5_USE_16_API
+GSL_INCL =  -I/usr/common/pdsoft/include
+GSL_LIBS =  -L/usr/common/pdsoft/lib  -Wl,"-R /usr/common/pdsoft/lib"
+FFTW_INCL= 
+FFTW_LIBS= 
+MPICHLIB =
+HDF5INCL =  -I/opt/envhpc/fftw/2.1.5/include/
+HDF5LIB  =  -L/opt/envhpc/fftw/2.1.5/lib/ -lhdf5 -lz
+endif
 
 ifeq ($(SYSTYPE),"MPA")
 CC       =  mpicc   
