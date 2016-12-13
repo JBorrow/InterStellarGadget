@@ -479,6 +479,13 @@ extern struct global_data_all_processes
   double OutputListTimes[MAXLEN_OUTPUTLIST];   /*!< table with desired output times */
   int OutputListLength;                        /*!< number of output times stored in the table of desired output times */
 
+#ifdef FIXED_POTENTIAL
+  double HaloMass;
+  double c_nfw;
+  double R_nfw;
+  double rho0_nfw;
+#endif
+
 }
  All;                                          /*!< a container variable for global variables that are equal on all processors */
 
