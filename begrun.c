@@ -586,6 +586,20 @@ void read_parameter_file(char *fname)
       addr[nt] = &All.MinGasTemp;
       id[nt++] = DOUBLE;
 
+#ifdef FIXED_POTENTIAL
+	  strcpy(tag[nt], "HaloMass");
+	  addr[nt] = &All.HaloMass;
+	  id[nt++] = DOUBLE;
+
+	  strcpy(tag[nt], "NFWc");
+	  addr[nt] = &All.c_nfw;
+	  id[nt++] = DOUBLE;
+
+	  strcpy(tag[nt], "NFWScaleRadius");
+	  addr[nt] = &All.R_nfw;
+	  id[nt++] = DOUBLE;
+#endif
+
       if((fd = fopen(fname, "r")))
 	{
 	  sprintf(buf, "%s%s", fname, "-usedvalues");
