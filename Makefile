@@ -9,7 +9,7 @@
 
 
 #--------------------------------------- Basic operation mode of code
-OPT   +=  -DPERIODIC 
+#OPT   +=  -DPERIODIC 
 OPT   +=  -DUNEQUALSOFTENINGS
 
 
@@ -60,7 +60,7 @@ OPT   +=  -DFIXED_POTENTIAL
 #OPT   +=  -DNOVISCOSITYLIMITER
 #OPT   +=  -DCOMPUTE_POTENTIAL_ENERGY
 #OPT   +=  -DLONGIDS
-#OPT   +=  -DISOTHERM_EQS
+OPT   +=  -DISOTHERM_EQS
 #OPT   +=  -DADAPTIVE_GRAVSOFT_FORGAS
 #OPT   +=  -DSELECTIVE_NO_GRAVITY=2+4+8+16
 
