@@ -48,6 +48,7 @@ OPT   +=  -DHAVE_HDF5
 
 
 #--------------------------------------- Things for special behaviour
+#OPT   +=  -DFIXED_POTENTIAL
 #OPT   +=  -DNOGRAVITY     
 #OPT   +=  -DNOTREERND 
 #OPT   +=  -DNOTYPEPREFIX_FFTW        
