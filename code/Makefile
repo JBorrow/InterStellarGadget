@@ -49,6 +49,8 @@ OPT   +=  -DHAVE_HDF5
 
 #--------------------------------------- Things for special behaviour
 OPT   +=  -DFIXED_POTENTIAL
+OPT   +=  -MARTIZZI_EOS
+#--------------------------------------- End of custom
 #OPT   +=  -DNO_SELF_GRAVITY
 #OPT   +=  -DNOGRAVITY     
 #OPT   +=  -DNOTREERND 
