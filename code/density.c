@@ -303,9 +303,12 @@ void density(void)
 		SphP[i].DivVel /= SphP[i].Density;
 
 		dt_entr = (All.Ti_Current - (P[i].Ti_begstep + P[i].Ti_endstep) / 2) * All.Timebase_interval;
-
+#ifdef MARTIZZI_EOS
+		SphP[i].Pressure = All.Martizzi_Prefactor * pow(SphP[i].Density, 5./4.);
+#else
 		SphP[i].Pressure =
 		  (SphP[i].Entropy + SphP[i].DtEntropy * dt_entr) * pow(SphP[i].Density, GAMMA);
+#endif
 	      }
 
 
