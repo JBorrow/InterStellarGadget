@@ -487,6 +487,10 @@ extern struct global_data_all_processes
 #endif
 
 #ifdef MARTIZZI_EOS
+  double f_Martizzi;
+  double F_Martizzi;
+  double fgas;
+  double Pfin;
   double Martizzi_Prefactor;
 #endif
 
