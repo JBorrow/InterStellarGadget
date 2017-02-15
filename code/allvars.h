@@ -52,6 +52,11 @@ typedef  long long  peanokey;    /*!< defines the variable type used for Peano-H
 #define  GAMMA         (5.0/3)   /*!< adiabatic index of simulated gas */
 #endif
 
+#ifdef   MARTIZZI_EOS
+#undef   GAMMA
+#define  GAMMA         (5.0/4) 
+#endif
+
 #define  GAMMA_MINUS1  (GAMMA-1)
 
 #define  HYDROGEN_MASSFRAC 0.76  /*!< mass fraction of hydrogen, relevant only for radiative cooling */
