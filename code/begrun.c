@@ -168,6 +168,11 @@ void set_units(void)
   All.rho0_nfw = All.HaloMass/(4*3.14159*pow(All.R_nfw, 3)*(log(1+All.c_nfw) - All.c_nfw/(1 + All.c_nfw)));
 #endif
 
+#ifdef MARTIZZI_EOS
+  /* We need to build All.Martizzi_Prefactor (otherwise we are gonna multiply things so much) */
+  All.Martizzi_Prefactor = 4.5 * pow(All.f_Martizzi/All.F_Martizzi, 3./2.) * pow(All.G, 3./4.) * sqrt(All.Pfin) / All.fgas;
+#endif
+
   /* convert some physical input parameters to internal units */
 
   All.Hubble = HUBBLE * All.UnitTime_in_s;
@@ -604,6 +609,25 @@ void read_parameter_file(char *fname)
 	  addr[nt] = &All.R_nfw;
 	  id[nt++] = DOUBLE;
 #endif
+
+#ifdef MARTIZZI_EOS
+	  strcpy(tag[nt], "f_Martizzi");
+	  addr[nt] = &All.f_Martizzi;
+	  id[nt++] = DOUBLE;
+
+	  strcpy(tag[nt], "F_Martizzi");
+	  addr[nt] = &All.F_Martizzi;
+	  id[nt++] = DOUBLE;
+
+	  strcpy(tag[nt], "Pfin");
+	  addr[nt] = &All.Pfin;
+	  id[nt++] = DOUBLE;
+
+	  strcpy(tag[nt], "fgas");
+	  addr[nt] = &All.fgas;
+	  id[nt++] = DOUBLE;
+#endif
+
 
       if((fd = fopen(fname, "r")))
 	{

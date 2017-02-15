@@ -491,6 +491,14 @@ extern struct global_data_all_processes
   double rho0_nfw;
 #endif
 
+#ifdef MARTIZZI_EOS
+  double f_Martizzi;
+  double F_Martizzi;
+  double fgas;
+  double Pfin;
+  double Martizzi_Prefactor;
+#endif
+
 }
  All;                                          /*!< a container variable for global variables that are equal on all processors */
 

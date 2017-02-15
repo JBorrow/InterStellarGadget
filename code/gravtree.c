@@ -379,7 +379,11 @@ void gravity_tree(void)
 	  m_in_r = prefactor*(log(1 + (r/All.R_nfw)) - r/(r + All.R_nfw))/r2;
 
 	  for (j=0; j<3; j++) {  // We need to add so self-gravity
-		P[i].GravAccel[j] -= (m_in_r)*(P[i].Pos[j]/r);
+#ifdef NO_SELF_GRAVITY
+	    P[i].GravAccel[j] = (m_in_r)*(P[i].Pos[j]/r);
+#else
+	    P[i].GravAccel[j] -= (m_in_r)*(P[i].Pos[j]/r);
+#endif
 	  }
 	}
   }
