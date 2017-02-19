@@ -298,7 +298,8 @@ void advance_and_find_timesteps(void)
 	      /* In case of cooling, we prevent that the entropy (and
 	         hence temperature decreases by more than a factor 0.5 */
 #ifdef MARTIZZI_EOS
-         SphP[i].Entropy = All.Martizzi_Prefactor * pow(SphP[i].Density, GAMMA_MINUS1);
+         SphP[i].Entropy = All.Martizzi_Prefactor;
+         SphP[i].DtEntropy = 0;
 #else
 	      if(SphP[i].DtEntropy * dt_entr > -0.5 * SphP[i].Entropy)
 		SphP[i].Entropy += SphP[i].DtEntropy * dt_entr;
