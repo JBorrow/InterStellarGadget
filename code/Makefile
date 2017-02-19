@@ -115,6 +115,19 @@ HDF5INCL =  -I/opt/envhpc/fftw/2.1.5/include/
 HDF5LIB  =  -L/opt/envhpc/fftw/2.1.5/lib/ -lhdf5 -lz
 endif
 
+ifeq ($(SYSTYPE), "Ham")
+CC       = mpicc
+OPTIMIZE = -O3 -Wall
+GSL_INCL = -I/usr/local/Cluster-Apps/gsl/intel/1.15/include
+GSL_LIBS = -L/usr/local/Cluster-Apps/gsl/intel/1.15/lib
+FFTW_INCL= -I/usr/local/Cluster-Apps/fftw/intelmpi/intel/2.1.5/include
+FFTW_LIBS= -L/usr/local/Cluster-Apps/fftw/intelmpi/intel/2.1.5/lib
+MPICHLIB =
+HDF5INCL = -I/usr/local/Cluster-Apps/hdf5/impi/intel/1.8.9/include -DH5_USE_16_API
+HDF5LIB  = -L/usr/local/Cluster-Apps/hdf5/impi/intel/1.8.9/lib -lhdf5 -lz
+endif
+
+
 ifeq ($(SYSTYPE),"MPA")
 CC       =  mpicc   
 OPTIMIZE =  -O3 -Wall
