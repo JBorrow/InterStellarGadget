@@ -49,7 +49,7 @@ OPT   +=  -DHAVE_HDF5
 
 #--------------------------------------- Things for special behaviour
 OPT   +=  -DFIXED_POTENTIAL
-OPT   +=  -MARTIZZI_EOS
+OPT   +=  -DMARTIZZI_EOS
 #--------------------------------------- End of custom
 #OPT   +=  -DNO_SELF_GRAVITY
 #OPT   +=  -DNOGRAVITY     
@@ -90,7 +90,8 @@ MPICHLIB =  -lmpich
 
 #--------------------------------------- Select target computer
 
-SYSTYPE="josh"
+#SYSTYPE="josh"
+SYSTYPE="COSMA"
 #SYSTYPE="MPA"
 #SYSTYPE="Mako"
 #SYSTYPE="Regatta"
@@ -126,6 +127,20 @@ MPICHLIB =
 HDF5INCL = -I/usr/local/Cluster-Apps/hdf5/impi/intel/1.8.9/include -DH5_USE_16_API
 HDF5LIB  = -L/usr/local/Cluster-Apps/hdf5/impi/intel/1.8.9/lib -lhdf5 -lz
 endif
+
+
+ifeq ($(SYSTYPE), "COSMA")
+CC = $(MPIROOT)/bin/mpicc
+OPTIMIZE = -g -Warray-bounds -Wimplicit-function-declaration -Wreturn-type -Wuninitialized -Wunused-function -Wunused-value -Wunused-variable -save-temps -DH5_USE_16_API
+GSL_INCL =
+GSL_LIBS =
+FFTW_INCL= 
+FFTW_LIBS= 
+MPICHLIB =
+HDF5INCL =  
+HDF5LIB =  -lhdf5
+endif
+
 
 
 ifeq ($(SYSTYPE),"MPA")
